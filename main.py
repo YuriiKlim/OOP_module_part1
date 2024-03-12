@@ -1,12 +1,17 @@
-class Dogs():
-    def __init__(self, name, age, breed):
+# Завдання 1
+# Створіть клас Student з атрибутами name та age.
+# Додайте метод print_info, який виведе інформацію про
+# студента у на вигляді "Ім'я: {name}, Вік: {age}".
+
+
+class Student:
+    def __init__(self, name, age):
         self.name = name
         self.age = age
-        self.breed = breed
 
+    def print_info(self):
+        print(f"ім'я студента - {self.name}, його вік - {self.age}")
 
-# створення екземпляру класу
-my_dog = Dogs("Пес", 5, "хаскі")
-print(my_dog.name)
-print(my_dog.age)
-print(my_dog.breed)
+student1 = Student("Ваня", 17,)
+student1.print_info()
+
