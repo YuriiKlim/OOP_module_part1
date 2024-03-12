@@ -1,12 +1,53 @@
-class Dogs():
-    def __init__(self, name, age, breed):
-        self.name = name
-        self.age = age
-        self.breed = breed
+# Створіть клас «Дріб». Збережіть у класі
+# чисельник та знаменник. Реалізуйте методи класу для
+# введення-виведення даних. Також створіть методи
+# класу для виконання арифметичних операцій
+# (додавання, віднімання, множення, ділення і т. д.).
+
+class Fraction:
+    def __init__(self, numerator, denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+
+    def display_fraction(self):
+        print(f"{self.numerator}/{self.denominator}")
+
+    def add(self, other_fraction):
+        result_numerator = self.numerator * other_fraction.denominator + other_fraction.numerator * self.denominator
+        result_denominator = self.denominator * other_fraction.denominator
+        return Fraction(result_numerator, result_denominator)
+
+    def subtract(self, other_fraction):
+        result_numerator = self.numerator * other_fraction.denominator - other_fraction.numerator * self.denominator
+        result_denominator = self.denominator * other_fraction.denominator
+        return Fraction(result_numerator, result_denominator)
+
+    def multiply(self, other_fraction):
+        result_numerator = self.numerator * other_fraction.numerator
+        result_denominator = self.denominator * other_fraction.denominator
+        return Fraction(result_numerator, result_denominator)
+
+    def divide(self, other_fraction):
+        result_numerator = self.numerator * other_fraction.denominator
+        result_denominator = self.denominator * other_fraction.numerator
+        return Fraction(result_numerator, result_denominator)
 
 
-# створення екземпляру класу
-my_dog = Dogs("Пес", 5, "хаскі")
-print(my_dog.name)
-print(my_dog.age)
-print(my_dog.breed)
+fraction1 = Fraction(1, 2)
+fraction2 = Fraction(2, 4)
+
+fraction1.display_fraction()
+fraction2.display_fraction()
+
+result_addition = fraction1.add(fraction2)
+result_addition.display_fraction()
+
+result_addition = fraction1.subtract(fraction2)
+result_addition.display_fraction()
+
+result_addition = fraction1.multiply(fraction2)
+result_addition.display_fraction()
+
+result_addition = fraction1.divide(fraction2)
+result_addition.display_fraction()
+
