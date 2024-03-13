@@ -5,7 +5,7 @@
 # методи класу для введення-виведення даних та інших
 # операцій.
 class City:
-    def __init__(self, name="", region="", country="", population=0, postal_code="", phone_code=""):
+    def __init__(self, name="", region="", country="", population=0, postal_code=0, phone_code=0):
         self.name = name
         self.region = region
         self.country = country
@@ -76,7 +76,6 @@ class City:
                     try:
                         self.name = input("Введіть нову назву міста: ")
                         if self.name.isalpha():
-                            city.display_data()
                             break
                         else:
                             raise ValueError
@@ -87,7 +86,6 @@ class City:
                     try:
                         self.region = input("Введіть нову назву регіону: ")
                         if self.region.isalpha():
-                            city.display_data()
                             break
                         else:
                             raise ValueError
@@ -98,18 +96,15 @@ class City:
                     try:
                         self.country = input("Введіть нову назву країни: ")
                         if self.country.isalpha():
-                            city.display_data()
                             break
                         else:
                             raise ValueError
                     except ValueError:
                         print("Неправильне значення")
-
             elif choice == '4':
                 while True:
                     try:
                         self.population = int(input("Введіть нову кількість жителів у місті: "))
-                        city.display_data()
                         break
                     except ValueError:
                         print("Неправильне значення")
@@ -117,7 +112,6 @@ class City:
                 while True:
                     try:
                         self.postal_code = int(input("Введіть новий поштовий індекс міста: "))
-                        city.display_data()
                         break
                     except ValueError:
                         print("Неправильне значення")
@@ -125,7 +119,6 @@ class City:
                 while True:
                     try:
                         self.phone_code = int(input("Введіть новий телефонний код міста: "))
-                        city.display_data()
                         break
                     except ValueError:
                         print("Неправильне значення")
@@ -133,6 +126,7 @@ class City:
                 break
             else:
                 print("Невідома опція.")
+            city.display_data()
 
 
 city = City()
