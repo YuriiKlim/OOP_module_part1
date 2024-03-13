@@ -128,7 +128,6 @@ class City:
                 print("Невідома опція.")
             city.display_data()
 
-
 city = City()
 city.input_data()
 city.display_data()

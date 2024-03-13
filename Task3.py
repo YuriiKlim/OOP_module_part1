@@ -148,7 +148,6 @@ class Country:
         else:
             print("Невідома дія.")
 
-
 country = Country()
 country.input_data()
 country.display_data()
