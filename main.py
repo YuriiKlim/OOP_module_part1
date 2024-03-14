@@ -1,15 +1,27 @@
-class Duck:
-    def quack(self):
-        print("Кря!")
+def add(x, y):
+    return x + y
 
-class Person:
-    def quack(self):
-        print("не той кря")
+result1 = add(1, 4)
+result2 = add("Hello", "World")
+print(result1)
+print(result2)
 
-def make_it_quack(obj):
-    obj.quack()
+# Динамічний поліморфізм
 
-duck = Duck()
-person = Person()
-make_it_quack(duck)
-make_it_quack(person)
+class Animal:
+    def make_sound(self):
+        pass
+class Dog(Animal):
+    def make_sound(self):
+        return "Bark!"
+
+class Cat(Animal):
+    def make_sound(self):
+        return "Meow!"
+def animal_make_sound(animal):
+    return animal.make_sound()
+
+dog, cat, = Dog(), Cat()
+result1 = animal_make_sound(dog)
+result2 = animal_make_sound(cat)
+print(result1, result2)
