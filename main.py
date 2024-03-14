@@ -1,15 +1,11 @@
-class Duck:
-    def quack(self):
-        print("Кря!")
+#перевантаження методів
+class String_manipulator:
+    def concatenate(self, a, b):
+        return a + b
 
-class Person:
-    def quack(self):
-        print("не той кря")
+    def concatenate_str(self, a, b):
+        return str(a) + str(b)
 
-def make_it_quack(obj):
-    obj.quack()
-
-duck = Duck()
-person = Person()
-make_it_quack(duck)
-make_it_quack(person)
+calc = String_manipulator()
+print(calc.concatenate(2,3))
+print(calc.concatenate_str("Hey","Dude"))
