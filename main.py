@@ -1,15 +1,12 @@
-class Duck:
-    def quack(self):
-        print("Кря!")
+class Complex_Number:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
 
-class Person:
-    def quack(self):
-        print("не той кря")
+    def __add__(self, other):
+        return Complex_Number(self.real + other.real, self.imag + other.imag)
 
-def make_it_quack(obj):
-    obj.quack()
-
-duck = Duck()
-person = Person()
-make_it_quack(duck)
-make_it_quack(person)
+num1 = Complex_Number(1, 2)
+num2 = Complex_Number(3, 4)
+result = num1 + num2
+print(result)
