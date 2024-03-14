@@ -1,12 +1,15 @@
-class Dogs():
-    def __init__(self, name, age, breed):
-        self.name = name
-        self.age = age
-        self.breed = breed
+class Duck:
+    def quack(self):
+        print("Кря!")
 
+class Person:
+    def quack(self):
+        print("не той кря")
 
-# створення екземпляру класу
-my_dog = Dogs("Пес", 5, "хаскі")
-print(my_dog.name)
-print(my_dog.age)
-print(my_dog.breed)
+def make_it_quack(obj):
+    obj.quack()
+
+duck = Duck()
+person = Person()
+make_it_quack(duck)
+make_it_quack(person)
