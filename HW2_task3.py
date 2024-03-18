@@ -102,7 +102,7 @@ country1.display_data()
 country2.display_data()
 #country.update_info()
 
-if country1 > country2:
+if country1.population > country2.population:
     print(f"У {country1.name} більше населення, ніж у {country2.name}.")
 else:
     print(f"У {country2.name} більше населення, ніж у {country1.name}.")
