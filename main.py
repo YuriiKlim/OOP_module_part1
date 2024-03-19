@@ -67,10 +67,13 @@
 # print(f"area in apartments - {apartment.get_area()}")
 
 class Event:
-    def __init__(self, name, date, desc):
+    count = 0
+
+    def __init__(self, name=None, date=None, desc=None):
         self.__name = name
         self.__date = date
         self.__desc = desc
+        Event.count += 1
     def set_date(self, new_date):
         self.__date = new_date
     def set_desc(self,new_desc):
@@ -81,3 +84,13 @@ class Event:
         return self.__date
     def get_desc(self):
         return self.__desc
+    def __del__(self):
+        Event.count -= 1
+        del self
+event1 = Event()
+event2 = Event()
+event3 = Event()
+
+print(Event.count, event1.count)
+del event3
+print(Event.count, event1.count)
