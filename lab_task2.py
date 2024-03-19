@@ -9,8 +9,13 @@ class ShoppingCart:
 
     def add_item(self, name, count, price):
         """Додає товар у кошик."""
-        if isinstance(name, str) and isinstance(price, (int, float)) and price > 0 and isinstance(count, int) and count > 0:
-            self.__items.append({"name": name, "price": price, "count": count})
+        if isinstance(name, str) and isinstance(price, (int, float)) and price > 0 and isinstance(count,int) and count > 0:
+            for item in self.__items:
+                if item["name"] == name and item["price"] == price:
+                    item["count"] += count
+                    break
+            else:
+                self.__items.append({"name": name, "price": price, "count": count})
         else:
             print("Некоректні дані товару.")
 
@@ -29,8 +34,9 @@ class ShoppingCart:
         print(f"Загальна вартість: {self.get_total_price()} грн")
 
 cart = ShoppingCart()
-cart.add_item("Книга", 2,300)
+cart.add_item("Книга", 2, 300)
 cart.add_item("Ручка", 5, 15)
-cart.add_item("Зошит", 3,20)
+cart.add_item("Зошит", 3, 20)
+cart.add_item("Зошит", 3, 20)
 
 cart.display_items()
