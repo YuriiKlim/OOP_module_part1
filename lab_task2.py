@@ -9,7 +9,8 @@ class ShoppingCart:
 
     def add_item(self, name, count, price):
         """Додає товар у кошик."""
-        if isinstance(name, str) and isinstance(price, (int, float)) and price > 0 and isinstance(count,int) and count > 0:
+        if (isinstance(name, str) and isinstance(price, (int, float)) and price > 0
+                and isinstance(count, int) and count > 0):
             for item in self.__items:
                 if item["name"] == name and item["price"] == price:
                     item["count"] += count
@@ -30,7 +31,7 @@ class ShoppingCart:
             return
         print("Товари у кошику:")
         for item in self.__items:
-            print(f"- {item['name']} {item['count']}: {item['price']} грн")
+            print(f"- {item['name']} {item['count']} шт: {item['price']} грн")
         print(f"Загальна вартість: {self.get_total_price()} грн")
 
 cart = ShoppingCart()
