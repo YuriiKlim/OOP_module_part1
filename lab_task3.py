@@ -35,3 +35,4 @@ wallet.withdraw_money(200)
 wallet.check_balance()
 
 wallet.withdraw_money(1000)
+
