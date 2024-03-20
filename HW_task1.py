@@ -76,28 +76,28 @@ class HotelOrder:
                 if choice == '2':
                     while True:
                         if self.room_type == "Стандарт":
-                            new_cost = self.input_number(f"Введіть нову ціну за день у діапазоні "
+                            new_cost = self.input_number(f"Введіть нову ціну за день для типу {self.room_type} у діапазоні "
                                                          f"{self.room_options["1"][1][0]}-{self.room_options["1"][1][1]}: ")
                             if self.room_options["1"][1][0] <= new_cost <= self.room_options["1"][1][1]:
                                 break
                             else:
                                 print("Ціна повинна бути в межах вказаного діапазону.")
                         elif self.room_type == "Бізнес":
-                            new_cost = self.input_number(f"Введіть нову ціну за день у діапазоні "
+                            new_cost = self.input_number(f"Введіть нову ціну за день для типу {self.room_type} у діапазоні "
                                                          f"{self.room_options["2"][1][0]}-{self.room_options["2"][1][1]}: ")
                             if self.room_options["2"][1][0] <= new_cost <= self.room_options["2"][1][1]:
                                 break
                             else:
                                 print("Ціна повинна бути в межах вказаного діапазону.")
                         elif self.room_type == "Люкс":
-                            new_cost = self.input_number(f"Введіть нову ціну за день у діапазоні "
+                            new_cost = self.input_number(f"Введіть нову ціну за день для типу {self.room_type} у діапазоні "
                                                          f"{self.room_options["3"][1][0]}-{self.room_options["3"][1][1]}: ")
                             if self.room_options["3"][1][0] <= new_cost <= self.room_options["3"][1][1]:
                                 break
                             else:
                                 print("Ціна повинна бути в межах вказаного діапазону.")
                         elif self.room_type == "Президентський":
-                            new_cost = self.input_number(f"Введіть нову ціну за день у діапазоні "
+                            new_cost = self.input_number(f"Введіть нову ціну за день для типу {self.room_type} у діапазоні "
                                                          f"{self.room_options["4"][1][0]}-{self.room_options["4"][1][1]}: ")
                             if self.room_options["4"][1][0] <= new_cost <= self.room_options["4"][1][1]:
                                 break
@@ -130,8 +130,83 @@ class HotelOrder:
         """Виводить інформацію про замовлення."""
         print(f"\nКлієнт: {self.client_name}\nТип кімнати: {self.room_type}\nДні: {self.days}\nВартість за день: {self.__cost_per_day:g}\nЗагальна вартість: {self.__total_cost:g}")
 
-order1 = HotelOrder("Юрій Клім", "Стандарт", 5, 900)
-order1.get_order_info()
+class HotelOrderManagement:
+    def __init__(self):
+        self.orders = []
+        order1 = HotelOrder("Юрій Клім", "Стандарт", 3, 750)
+        self.orders.append(order1)
 
-order1.update_info()
+    def create_order(self):
+        """Створення нового замовлення з даними від користувача."""
+        client_name = input("Введіть ім'я клієнта: ")
+        print("Виберіть тип кімнати:")
+        for key, (type, _) in HotelOrder.room_options.items():
+            print(f"{key}. {type}")
+        room_choice = input()
+        room_type, price_range = HotelOrder.room_options.get(room_choice, ("", (0, 0)))
+        days = int(input("Введіть кількість днів: "))
+        cost_per_day = float(input(f"Введіть вартість за день (діапазон {price_range[0]}-{price_range[1]}): "))
+        new_order = HotelOrder(client_name, room_type, days, cost_per_day)
+        self.orders.append(new_order)
+        print("Замовлення успішно додано.")
+
+    def list_orders(self):
+        """Виводить список всіх замовлень."""
+        if not self.orders:
+            print("\nНемає замовлень.")
+            return
+        for i, order in enumerate(self.orders, start=1):
+            print(f"{i}. {order.client_name}")
+
+    def select_order(self):
+        """Вибір замовлення для редагування або видалення."""
+        self.list_orders()
+        if not self.orders:
+            return
+        choice = int(input("Виберіть номер замовлення: ")) - 1
+        if 0 <= choice < len(self.orders):
+            selected_order = self.orders[choice]
+            while True:
+                print(f"\nВибрано замовлення: {selected_order.client_name}")
+                selected_order.get_order_info()
+                print("\n1. Редагувати замовлення\n2. Видалити замовлення\nenter - Повернутися до головного меню")
+                action = input("Ваш вибір: ")
+                if action == "1":
+                    selected_order.update_info()
+                elif action == "2":
+                    self.del_order(choice)
+                    print("Замовлення видалено.")
+                    break
+                elif action == "":
+                    break
+                else:
+                    print("Невідома опція. Спробуйте ще раз.")
+        else:
+            print("Невірний вибір замовлення.")
+
+    def del_order(self, index):
+        """Видаляє замовлення за індексом."""
+        if 0 <= index < len(self.orders):
+            del self.orders[index]
+
+def main():
+    management = HotelOrderManagement()
+    while True:
+        print("\nГотельне управління замовленнями")
+        print("1. Створити нове замовлення\n2. Переглянути всі замовлення\nenter - Вийти")
+        choice = input("Введіть ваш вибір: ")
+        if choice == "1":
+            management.create_order()
+        elif choice == "2":
+            management.select_order()
+        elif choice == "":
+            print("Вихід з програми.")
+            break
+        else:
+            print("Невідома опція. Спробуйте ще раз.")
+
+if __name__ == "__main__":
+    main()
+
+
 
