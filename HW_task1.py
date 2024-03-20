@@ -137,7 +137,7 @@ class HotelOrderManagement:
         self.orders.append(order1)
 
     def create_order(self):
-        """Створення нового замовлення з даними від користувача."""
+        """Створення нового замовлення."""
         client_name = input("Введіть ім'я клієнта: ")
         print("Виберіть тип кімнати:")
         for key, (type, _) in HotelOrder.room_options.items():
