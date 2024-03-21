@@ -12,40 +12,40 @@ class Person:
         self.address = address
         Person.object_count += 1
 
-    def input_alpha_data(self, prompt, field_name):
+    @staticmethod
+    def input_alpha_data(prompt):
         while True:
             value = input(prompt)
             if value.isalpha() or " " in value:
-                setattr(self, field_name, value)
-                break
+                return value
             else:
                 print("Неправильне значення. Будь ласка, введіть лише букви.")
 
-    def input_date_of_birth(self):
+    @staticmethod
+    def input_date_of_birth(prompt="Введіть дату народження (дд.мм.рррр): "):
         while True:
-            date_input = input("Введіть дату народження (дд.мм.рррр): ")
+            date_input = input(prompt)
             try:
-                self.date_of_birth = datetime.datetime.strptime(date_input, "%d.%m.%Y").date()
-                break
+                return datetime.datetime.strptime(date_input, "%d.%m.%Y").date()
             except ValueError:
                 print("Невірний формат дати. Спробуйте ще раз.")
 
-    def input_phone(self):
+    @staticmethod
+    def input_phone(prompt="Введіть контактний телефон у форматі '+12345678': "):
         phone_pattern = r"^\+\d+$"
         while True:
-            phone_input = input("Введіть контактний телефон у форматі '+12345678': ")
+            phone_input = input(prompt)
             if re.match(phone_pattern, phone_input):
-                self.phone = phone_input
-                break
+                return phone_input
             else:
                 print("Невірний формат телефонного номера. Спробуйте ще раз.")
 
     def input_data(self):
-        self.input_alpha_data("\nВведіть ПІБ: ", "full_name")
-        self.input_date_of_birth()
-        self.input_phone()
-        self.input_alpha_data("Введіть місто: ", "city")
-        self.input_alpha_data("Введіть країну: ", "country")
+        self.full_name = Person.input_alpha_data("\nВведіть ПІБ: ")
+        self.date_of_birth = Person.input_date_of_birth()
+        self.phone = Person.input_phone()
+        self.city = Person.input_alpha_data("Введіть місто: ")
+        self.country = Person.input_alpha_data("Введіть країну: ")
         self.address = input("Введіть домашню адресу: ")
 
     def display_data(self):
