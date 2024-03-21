@@ -13,7 +13,6 @@ class Character:
         current_heal = target.health - self.damage
         print(f"У {target.name} залишається {current_heal} здоров'я")
 
-# Приклад використання:
 character1 = Character("Герой", 100, 20)
 character2 = Character("Ворог", 80, 15)
 
