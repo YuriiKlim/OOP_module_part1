@@ -16,7 +16,7 @@ class Person:
     def input_alpha_data(prompt):
         while True:
             value = input(prompt)
-            if value.isalpha() or " " in value:
+            if value.replace(' ','').isalpha():
                 return value
             else:
                 print("Неправильне значення. Будь ласка, введіть лише букви.")
