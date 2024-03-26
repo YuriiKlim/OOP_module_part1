@@ -11,20 +11,20 @@
 # поточний час за допомогою методу display_time.
 class Clock:
     def __init__(self, hours, minutes):
-        self.hours = hours
-        self.minutes = minutes
+        self._hours = hours
+        self._minutes = minutes
 
 
 class AnalogClock(Clock):
     def display_time(self):
-        print(f"{self.hours:02}:{self.minutes:02}")
+        print(f"{self._hours:02}:{self._minutes:02}")
 
 
 class DigitalClock(Clock):
     def display_time(self):
-        period = "am" if self.hours < 12 else "pm"
-        hours_formatted = self.hours % 12 or 12
-        print(f"{hours_formatted:02}:{self.minutes:02} {period}")
+        period = "am" if self._hours < 12 else "pm"
+        hours_formatted = self._hours % 12 or 12
+        print(f"{hours_formatted:02}:{self._minutes:02} {period}")
 
 
 analog_clock = AnalogClock(15, 30)
