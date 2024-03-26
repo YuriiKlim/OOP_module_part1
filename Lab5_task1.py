@@ -16,6 +16,7 @@ class Human:
     def get_info(self):
         print(f"Ім'я: {self._name}, Вік: {self._age}, Громадянство: {self._citizenship}")
 
+
 class Builder(Human):
     def __init__(self, name, age, citizenship, specialization):
         super().__init__(name, age, citizenship)
@@ -24,6 +25,7 @@ class Builder(Human):
     def get_info(self):
         super().get_info()
         print(f"Спеціалізація: {self.specialization}")
+
 
 class Sailor(Human):
     def __init__(self, name, age, citizenship, ship):
@@ -34,14 +36,15 @@ class Sailor(Human):
         super().get_info()
         print(f"Корабель: {self.ship}")
 
+
 class Pilot(Human):
-    def __init__(self, name, age, citizenship, aircraft_type):
+    def __init__(self, name, age, citizenship, aircraft):
         super().__init__(name, age, citizenship)
-        self.aircraft_type = aircraft_type
+        self.aircraft = aircraft
 
     def get_info(self):
         super().get_info()
-        print(f"Тип літака: {self.aircraft_type}")
+        print(f"Тип літака: {self.aircraft}")
 
 
 builder = Builder("Іван", 35, "Українець", "муляр")
