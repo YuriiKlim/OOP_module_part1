@@ -17,7 +17,7 @@ class Clock:
 
 class AnalogClock(Clock):
     def display_time(self):
-        print(f"{self.hours}:{self.minutes}")
+        print(f"{self.hours:02}:{self.minutes:02}")
 
 
 class DigitalClock(Clock):
