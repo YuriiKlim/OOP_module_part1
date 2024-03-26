@@ -20,31 +20,31 @@ class Human:
 class Builder(Human):
     def __init__(self, name, age, citizenship, specialization):
         super().__init__(name, age, citizenship)
-        self.specialization = specialization
+        self._specialization = specialization
 
     def get_info(self):
         super().get_info()
-        print(f"Спеціалізація: {self.specialization}")
+        print(f"Спеціалізація: {self._specialization}")
 
 
 class Sailor(Human):
     def __init__(self, name, age, citizenship, ship):
         super().__init__(name, age, citizenship)
-        self.ship = ship
+        self._ship = ship
 
     def get_info(self):
         super().get_info()
-        print(f"Корабель: {self.ship}")
+        print(f"Корабель: {self._ship}")
 
 
 class Pilot(Human):
     def __init__(self, name, age, citizenship, aircraft):
         super().__init__(name, age, citizenship)
-        self.aircraft = aircraft
+        self._aircraft = aircraft
 
     def get_info(self):
         super().get_info()
-        print(f"Тип літака: {self.aircraft}")
+        print(f"Тип літака: {self._aircraft}")
 
 
 builder = Builder("Іван", 35, "Українець", "муляр")
