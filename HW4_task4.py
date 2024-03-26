@@ -18,17 +18,17 @@ class InformationSystem:
     @classmethod
     def add_user(cls):
         user_name = cls.input_alpha_data("Введіть ім'я користувача: ")
-        if user_name not in InformationSystem._data:
-            InformationSystem._data[user_name] = []
+        if user_name not in cls._data:
+            cls._data[user_name] = []
             print(f"Користувача {user_name} успішно додано.")
         else:
             print(f"Користувач {user_name} вже існує.")
 
     @classmethod
     def display_users(cls):
-        if InformationSystem._data:
+        if cls._data:
             print("Список користувачів та їх контакти:")
-            for i, (user, contacts) in enumerate(InformationSystem._data.items(), 1):
+            for i, (user, contacts) in enumerate(cls._data.items(), 1):
                 print(f"{i}. {user}: {', '.join(contacts) if contacts else 'Немає контактів'}")
         else:
             print("Список користувачів порожній.")
@@ -36,11 +36,11 @@ class InformationSystem:
     @classmethod
     def select_user(cls):
         cls.display_users()
-        if not InformationSystem._data:
+        if not cls._data:
             return
         try:
             choice = int(input("Виберіть номер користувача: ")) - 1
-            user_name = list(InformationSystem._data.keys())[choice]
+            user_name = list(cls._data.keys())[choice]
             cls.user_menu(user_name)
         except (ValueError, IndexError):
             print("Невірний вибір. Спробуйте ще раз.")
@@ -48,19 +48,19 @@ class InformationSystem:
     @classmethod
     def add_contact(cls, user_name):
         contact = cls.input_alpha_data("Введіть ім'я контакта: ")
-        InformationSystem._data[user_name].append(contact)
+        cls._data[user_name].append(contact)
         print("Контакт додано.")
 
     @classmethod
     def delete_contact(cls, user_name):
-        if not InformationSystem._data[user_name]:
+        if not cls._data[user_name]:
             print("У користувача немає контактів.")
             return
-        for i, contact in enumerate(InformationSystem._data[user_name], 1):
+        for i, contact in enumerate(cls._data[user_name], 1):
             print(f"{i}. {contact}")
         try:
             choice = int(input("Виберіть контакт для видалення: ")) - 1
-            del InformationSystem._data[user_name][choice]
+            del cls._data[user_name][choice]
             print("Контакт видалено.")
         except (ValueError, IndexError):
             print("Невірний вибір. Спробуйте ще раз.")
