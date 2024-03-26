@@ -15,15 +15,17 @@ class InformationSystem:
             else:
                 print("Неправильне значення. Будь ласка, введіть лише букви.")
 
-    def add_user(self):
-        user_name = self.input_alpha_data("Введіть ім'я користувача: ")
+    @classmethod
+    def add_user(cls):
+        user_name = cls.input_alpha_data("Введіть ім'я користувача: ")
         if user_name not in InformationSystem._data:
             InformationSystem._data[user_name] = []
             print(f"Користувача {user_name} успішно додано.")
         else:
             print(f"Користувач {user_name} вже існує.")
 
-    def display_users(self):
+    @classmethod
+    def display_users(cls):
         if InformationSystem._data:
             print("Список користувачів та їх контакти:")
             for i, (user, contacts) in enumerate(InformationSystem._data.items(), 1):
@@ -31,23 +33,26 @@ class InformationSystem:
         else:
             print("Список користувачів порожній.")
 
-    def select_user(self):
-        self.display_users()
+    @classmethod
+    def select_user(cls):
+        cls.display_users()
         if not InformationSystem._data:
             return
         try:
             choice = int(input("Виберіть номер користувача: ")) - 1
             user_name = list(InformationSystem._data.keys())[choice]
-            self.user_menu(user_name)
+            cls.user_menu(user_name)
         except (ValueError, IndexError):
             print("Невірний вибір. Спробуйте ще раз.")
 
-    def add_contact(self, user_name):
-        contact = self.input_alpha_data("Введіть ім'я контакта: ")
+    @classmethod
+    def add_contact(cls, user_name):
+        contact = cls.input_alpha_data("Введіть ім'я контакта: ")
         InformationSystem._data[user_name].append(contact)
         print("Контакт додано.")
 
-    def delete_contact(self, user_name):
+    @classmethod
+    def delete_contact(cls, user_name):
         if not InformationSystem._data[user_name]:
             print("У користувача немає контактів.")
             return
@@ -60,31 +65,33 @@ class InformationSystem:
         except (ValueError, IndexError):
             print("Невірний вибір. Спробуйте ще раз.")
 
-    def user_menu(self, user_name):
+    @classmethod
+    def user_menu(cls, user_name):
         while True:
             print(f"\nКористувач: {user_name}")
             print("1. Додати контакти\n2. Видалити контакти\nenter - Повернутися до головного меню")
             choice = input("Ваш вибір: ")
             if choice == "1":
-                self.add_contact(user_name)
+                cls.add_contact(user_name)
             elif choice == "2":
-                self.delete_contact(user_name)
+                cls.delete_contact(user_name)
             elif choice == "":
                 break
             else:
                 print("Невідома опція. Спробуйте ще раз.")
 
-    def run(self):
+    @classmethod
+    def run(cls):
         while True:
             print("\nСистема управління користувачами")
             print("1. Відобразити користувачів\n2. Додати нового користувача\n3. Вибрати користувача\nenter - Вийти")
             choice = input("Введіть ваш вибір: ")
             if choice == "1":
-                self.display_users()
+                cls.display_users()
             elif choice == "2":
-                self.add_user()
+                cls.add_user()
             elif choice == "3":
-                self.select_user()
+                cls.select_user()
             elif choice == "":
                 print("Вихід з програми.")
                 break
