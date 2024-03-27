@@ -48,6 +48,8 @@ class Product(Money):
 
 product = Product(39, 99, "Milk")
 product.decrease_price(5, 50)
+
+
 product.get_product()
 product.display_price_in_currencies()
 
