@@ -14,7 +14,7 @@ class Money:
         self._fractional_part = fractional_part
 
     def get_amount(self):
-        print(f"{self._whole_part}.{self._fractional_part:02d}")
+        print(f"{self._whole_part}.{self._fractional_part:02d} UAH")
 
     def set_values(self, whole_part, fractional_part):
         self._whole_part = whole_part
@@ -27,6 +27,13 @@ class Money:
         total_currency = total_uah / rate
         return total_currency
 
+    def decrease_price(self, decrease_whole, decrease_fractional):
+        total_in_cents = self._whole_part * 100 + self._fractional_part
+        decrease_total_in_cents = decrease_whole * 100 + decrease_fractional
+        new_total_in_cents = max(0, total_in_cents - decrease_total_in_cents)
+        self._whole_part = new_total_in_cents // 100
+        self._fractional_part = new_total_in_cents % 100
+
 
 class Product(Money):
     def __init__(self, whole_part, fractional_part, name):
@@ -36,20 +43,14 @@ class Product(Money):
     def get_product(self):
         print(f"{self.name} коштує: {self._whole_part}.{self._fractional_part:02d} UAH")
 
-    def decrease_price(self, decrease_whole, decrease_fractional):
-        total_fractional = self._fractional_part + decrease_fractional
-        carry = total_fractional // 100
-        self._fractional_part = total_fractional % 100
-        self._whole_part = max(0, self._whole_part + carry - decrease_whole)
-
     def display_price_in_currencies(self):
-        print(f"{self.calculate_in_currency('USD'):.2f} у USD, {self.calculate_in_currency('EUR'):.2f} у EUR")
+        print(
+            f"{self.name} коштує: {self.calculate_in_currency('USD'):.2f} у USD, {self.calculate_in_currency('EUR'):.2f} у EUR")
 
 
 product = Product(39, 99, "Milk")
 product.decrease_price(5, 50)
-
-
 product.get_product()
 product.display_price_in_currencies()
+
 
