@@ -4,46 +4,63 @@
 # Створіть від нього три похідні класи: President, Manager, Worker. Перевизначте функцію Print() для виведення
 # інформації, що відповідає кожному типу службовця.
 class Employer:
-    def __init__(self, age=0):
+    def __init__(self, name, age):
+        self.name = name
         self.age = age
 
     def __str__(self):
-        return "This is Employer class"
+        return f"{self.name}. {self.job()}"
 
     def __int__(self):
         return self.age
 
+    def job(self):
+        return "Робить вигляд роботи"
+
 
 class President(Employer):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+
     def __str__(self):
-        return "This is President class"
+        return "President: " + self.name + ", Age: " + str(self.age) + " - " + self.job()
+
+    def job(self):
+        return "Керує"
 
 
 class Manager(Employer):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+
     def __str__(self):
-        return "This is Manager class"
+        return "Manager: " + self.name + ", Age: " + str(self.age) + " - " + self.job()
+
+    def job(self):
+        return "Менеджерить"
 
 
 class Worker(Employer):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+
     def __str__(self):
-        return "This is Worker class"
+        return "Worker: " + self.name + ", Age: " + str(self.age) + " - " + self.job()
+
+    def job(self):
+        return "Професійно робить вигляд роботи"
 
 
-employer = Employer(50)
-president = President(45)
-manager = Manager(40)
-worker = Worker(35)
+president = President("Юрій", 55)
+manager = Manager("Юлія", 40)
+worker = Worker("Володя", 30)
 
-
-print(employer)
-print(int(employer))
 
 print(president)
+print(manager)
+print(worker)
+
+
 print(int(president))
 
-print(manager)
-print(int(manager))
-
-print(worker)
-print(int(worker))
 
