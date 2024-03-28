@@ -7,6 +7,7 @@ class Fraction:
     def __init__(self, numerator, denominator):
         self.numerator = numerator
         self.denominator = denominator
+        Fraction._object_count += 1
 
     def __str__(self):
         return f"{self.numerator}/{self.denominator}"
@@ -14,25 +15,25 @@ class Fraction:
     def __add__(self, other):
         new_numerator = self.numerator * other.denominator + self.denominator * other.numerator
         new_denominator = self.denominator * other.denominator
-        Fraction._object_count += 1
+        #Fraction._object_count += 1
         return Fraction(new_numerator, new_denominator)
 
     def __sub__(self, other):
         new_numerator = self.numerator * other.denominator - self.denominator * other.numerator
         new_denominator = self.denominator * other.denominator
-        Fraction._object_count += 1
+        #Fraction._object_count += 1
         return Fraction(new_numerator, new_denominator)
 
     def __mul__(self, other):
         new_numerator = self.numerator * other.numerator
         new_denominator = self.denominator * other.denominator
-        Fraction._object_count += 1
+        #Fraction._object_count += 1
         return Fraction(new_numerator, new_denominator)
 
     def __truediv__(self, other):
         new_numerator = self.numerator * other.denominator
         new_denominator = self.denominator * other.numerator
-        Fraction._object_count += 1
+        #Fraction._object_count += 1
         return Fraction(new_numerator, new_denominator)
 
     def simplify(self):
@@ -43,7 +44,7 @@ class Fraction:
         common_factor = gcd(self.numerator, self.denominator)
         self.numerator //= common_factor
         self.denominator //= common_factor
-        Fraction._object_count += 1
+        #Fraction._object_count += 1
         return self
 
     @staticmethod
