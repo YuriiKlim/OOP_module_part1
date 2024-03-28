@@ -14,7 +14,7 @@ class Pet:
         pass
 
     def show(self):
-        print(f"Ім'я {__class__.__name__}: {self.name}")
+        print(f"Ім'я тварини: {self.name}")
 
     def type(self):
         pass
@@ -73,6 +73,6 @@ hamster = Hamster("Джері")
 pets = [dog, cat, parrot, hamster]
 for pet in pets:
     pet.show()
-    print(f"Звук: {pet.sound()}")
     print(f"Тип: {pet.type()}")
+    print(f"Звук: {pet.sound()}")
     print(f"Підтип: {pet.subtype()}\n")
